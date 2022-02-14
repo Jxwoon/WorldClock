@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,7 +11,7 @@ namespace WorldClock
     /// </summary>
     public partial class MainWindowControl : UserControl
     {
-        
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindowControl"/> class.
@@ -17,6 +19,7 @@ namespace WorldClock
         public MainWindowControl()
         {
             this.InitializeComponent();
+
         }
 
         /// <summary>
@@ -35,8 +38,17 @@ namespace WorldClock
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Clock clock = new Clock();
+            TimeZoneInfo selectedTimezone = (TimeZoneInfo)timezonesComboBox.SelectedItem;
+            Clock clock = new Clock(selectedTimezone);
             this.ClockPanel.Children.Add(clock);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ReadOnlyCollection<TimeZoneInfo> TimeZones = TimeZoneInfo.GetSystemTimeZones();
+            this.DataContext = TimeZones;
+            timezonesComboBox.SelectedIndex = 1;
+
         }
 
     }

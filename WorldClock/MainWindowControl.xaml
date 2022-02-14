@@ -9,25 +9,31 @@
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             x:Name="MyToolWindow">
-    <Grid>
+             x:Name="MyToolWindow"
+         Loaded="Window_Loaded">
+    <Grid Height="300" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="260"/>
             <RowDefinition Height="20"/>
-
-
         </Grid.RowDefinitions>
-
 
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="World Clock" VerticalAlignment="Center" RenderTransformOrigin="0.461,-1.353"/>
 
-        <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Name="ClockPanel">
-            <local:Clock/>
-        </WrapPanel>
-
-        <Button Content="Add Clock" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Height="20" Width="300" Click="Button_Click"/>
-
+        <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+            
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Name="ClockPanel">
+                <local:Clock/>
+            </WrapPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="2" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" x:Name="timezonesComboBox" ItemsSource="{Binding}"/>
+            <Button Grid.Column="1" Content="Add Clock" Width="auto" Click="Button_Click"/>
+        </Grid>
 
 
 

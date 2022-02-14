@@ -96,7 +96,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\afternoon.png" />
+    <Resource Include="Resources\evening.png" />
     <Content Include="Resources\MainWindowCommand.png" />
+    <Resource Include="Resources\morning.png" />
+    <Resource Include="Resources\night.png" />
     <VSCTCompile Include="WorldClockPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>

@@ -8,14 +8,14 @@
              d:DesignHeight="200" d:DesignWidth="150">
     <Grid Name="IndividualClock" >
         <Border BorderBrush="Black" BorderThickness="1.5"/>
-        <Grid ShowGridLines="True">
+        <Grid ShowGridLines="False">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image x:Name="timeImage" Source="pack://application:,,,/WorldClock;component/Resources/morning.png" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100"/>
+            <Image x:Name="timeImage" Source="pack://application:,,,/WorldClock;component/Resources/morning.png" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100" Margin="0,5,0,5"/>
             <TextBlock x:Name="clockZone" Text="location" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock x:Name="clockTime" Text="time" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button x:Name="Close_Clock" Content="X" Grid.Row="0"  Margin="130,3,3,78" Click="Delete_Clock" />

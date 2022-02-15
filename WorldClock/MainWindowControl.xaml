@@ -28,7 +28,7 @@
             </WrapPanel>
         </ScrollViewer>
         
-        <Grid Grid.Row="3" ShowGridLines="True">
+        <Grid Grid.Row="3" ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*" />
                 <ColumnDefinition Width="3*" />

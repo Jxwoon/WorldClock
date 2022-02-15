@@ -22,6 +22,14 @@ namespace WorldClock
 
         }
 
+        public bool UseMilitaryTime => MainCheckBoxTime.UseMilitaryTime;
+        //{
+        //    get
+        //    {
+        //        return MainCheckBoxTime.UseMilitaryTime;
+        //    }
+        //}
+
         /// <summary>
         /// Handles click on the button by displaying a message box.
         /// </summary>
@@ -40,6 +48,7 @@ namespace WorldClock
         {
             TimeZoneInfo selectedTimezone = (TimeZoneInfo)timezonesComboBox.SelectedItem;
             Clock clock = new Clock(selectedTimezone);
+            clock.Margin = new Thickness(10);
             this.ClockPanel.Children.Add(clock);
         }
 

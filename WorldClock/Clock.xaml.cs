@@ -24,6 +24,8 @@ namespace WorldClock
         private TimeZone localZone;
         private TimeZoneInfo selectedTimeZone;
 
+       
+
         public Clock()
         {
             InitializeComponent();
@@ -59,9 +61,8 @@ namespace WorldClock
 
         private void tickevent(object sender, EventArgs e)
         {
-            clockTime.Text = DateTime.Now.ToString();
+            setToMilitaryTime(DateTime.Now);
             setTimeImage(DateTime.Now);
-
 
         }
 
@@ -83,7 +84,7 @@ namespace WorldClock
         {
             TimeZoneInfo selectedTimeZone = GetSelectedTimeZoneInfo();
             DateTime dt = TimeZoneInfo.ConvertTime(DateTime.Now, selectedTimeZone);
-            clockTime.Text = dt.ToString();
+            setToMilitaryTime(dt);
             setTimeImage(dt);
 
         }
@@ -110,6 +111,39 @@ namespace WorldClock
             {
                 timeImage.Source = new BitmapImage(new Uri("pack://application:,,,/WorldClock;component/Resources/night.png"));
             }
+        }
+
+        public void setToMilitaryTime(DateTime dt)
+        {
+            MainWindowControl mwc = FindMainWindowControl();
+            bool toggle = mwc != null ? mwc.UseMilitaryTime : false;
+            //bool toggle = mwc?.UseMilitaryTime ?? false;
+
+            if (toggle)
+            {
+                clockTime.Text = dt.ToString("M/d/yyyy HH:mm");
+            }
+            else
+            {
+                clockTime.Text = dt.ToString();
+            }
+        }
+
+        private MainWindowControl FindMainWindowControl()
+        {
+            FrameworkElement currentElement = this;
+            do
+            {
+                FrameworkElement parent = currentElement.Parent as FrameworkElement;
+                if (parent is MainWindowControl mainWindowControl)
+                {
+                    return mainWindowControl;
+                }
+                currentElement = parent;
+
+            } while (currentElement != null);
+
+            return null;
         }
 
     }

@@ -8,25 +8,27 @@
              Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="320" d:DesignWidth="300"
              x:Name="MyToolWindow"
          Loaded="Window_Loaded">
-    <Grid Height="300" VerticalAlignment="Top">
+    <Grid VerticalAlignment="Stretch" ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="260"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="World Clock" VerticalAlignment="Center" RenderTransformOrigin="0.461,-1.353"/>
+        <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="World Clock" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid />
+        <ScrollViewer Grid.Row="2"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
 
-        <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
-            
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" Name="ClockPanel">
-                <local:Clock/>
+            <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Name="ClockPanel">
+                <local:Clock Margin="10"/>
             </WrapPanel>
         </ScrollViewer>
-        <Grid Grid.Row="2" ShowGridLines="True">
+        
+        <Grid Grid.Row="3" ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*" />
                 <ColumnDefinition Width="3*" />
@@ -34,6 +36,8 @@
             <ComboBox Grid.Column="0" x:Name="timezonesComboBox" ItemsSource="{Binding}"/>
             <Button Grid.Column="1" Content="Add Clock" Width="auto" Click="Button_Click"/>
         </Grid>
+        <local:MilitaryTimeToggle x:Name="MainCheckBoxTime" HorizontalAlignment="Right"  VerticalAlignment="Center" Height="20" Margin="201,0,0,0" Grid.Row="1" />
+
 
 
 
